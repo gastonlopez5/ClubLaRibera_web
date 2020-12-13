@@ -1,0 +1,86 @@
+/* ThemeColor One */
+
+.ritekhela-color,.ritekhela-colorhover:hover,.ritekhela-banner-btn,.ritekhela-team-view1-btn,.ritekhela-team-view1 figure figcaption a:hover,
+li:hover .ritekhela-team-view1-text h2 a,.ritekhela-latest-result-list figcaption a,.ritekhela-latest-result-center span,.ritekhela-blog-view3-text-btn,
+li:hover .ritekhela-blog-view3-text h2 a,.ritekhela-team-view2-btn,.ritekhela-parallax-view1 a {
+    color: #ffdc11;
+}
+
+.ritekhela-bgcolor,.ritekhela-bgcolorhover:hover,.ritekhela-fixture-slider .slick-arrow:hover,.ritekhela-blog-view1 figure > a:before,
+.popular_news_text small,.widget_popular_news ul li span,.widget_match_btn,.widget_next_match_title,.widget_next_match_option,
+.widget_about_info ul li,.widget_twitter_feeds i.fa-twitter,.widget_gallery ul li a:before,.ritekhela-copyright,.ritekhela-back-top,
+.ritekhela-countdown-nextmatch .is-countdown,.ritekhela-counter-view1 i,.ritekhela-testimonials-view1 .slick-arrow:hover,
+.footer_widget_title_two h2:before,.footer_widget_title_two h2:after,.widget_featured_news ul li span,.ritekhela-fixture-list-vs,
+.widget_newsletter_two input[type="submit"],.ritekhela-copyright-two,.ritekhela-copyright-two:before,.ritekhela-copyright-two-shape:before,
+.ritekhela-pagination ul li:hover a,.ritekhela-modren-fixture-text,.ritekhela-editor-detail-top,.ritekhela-tags span,
+.ritekhela-match-gallery i,.ritekhela-team-view3-text span,.ritekhela-blog-view4 figure i,.ritekhela-error-section form input[type="submit"],
+.ritekhela-error-section h2 {
+    background-color: #ffdc11;
+}
+
+.ritekhela-border-color,.ritekhela-border-colorhover:hover,.sm-blue ul,.sm-blue ul ul,.footer_widget_title h2,
+.ritekhela-banner-btn,.ritekhela-fancy-title-inner,.ritekhela-fancy-title-two,li:hover .ritekhela-blog-view1-btn,
+.ritekhela-latest-result-list figcaption a,.ritekhela-blog-view3-text-btn,.ritekhela-blog-view3-inner,
+.ritekhela-team-view2-btn,.ritekhela-parallax-view1 a,.ritekhela-testimonials-view1 figure,.ritekhela-fixture-detail figcaption,
+.ritekhela-section-title h2 {
+    border-color: #ffdc11;
+}
+.widget_popular_news ul li span:before,.widget_next_match_title:before,.widget_twitter_feeds i.fa-twitter:after,
+.ritekhela-counter-view1 i:after,.ritekhela-testimonials-view1-inner:before,.widget_featured_news ul li span:before,
+.ritekhela-pagination ul li:hover a:before {
+	border-top-color: #ffdc11;
+}
+.ritekhela-next-match-result strong:after {
+	border-left-color: #ffdc11;
+}
+.ritekhela-next-match-result strong:before {
+	border-right-color: #ffdc11;
+}
+.ritekhela-countdown-nextmatch .is-countdown:before,.ritekhela-copyright-two:after,
+.ritekhela-countdown-nextmatch .is-countdown:after,.ritekhela-counter-view1-inner:before {
+	border-bottom-color: #ffdc11;
+}
+
+
+
+
+
+
+
+
+
+/* ThemeColor Two */
+.ritekhela-color-two,.ritekhela-colorhover-two:hover,.ritekhela-cartbox-btn,blockquote:before,blockquote:after,.ritekhela-team-view3-btn,
+.ritekhela-blog-view4-btn {
+	color: #3e454c;
+}
+
+.ritekhela-bgcolor-two,.ritekhela-bgcolorhover-two:hover,.ritekhela-fancy-title-two,.ritekhela-blog-options,
+.ritekhela-blog-view1 .ritekhela-blog-options:before,.ritekhela-blog-view1 figure i,.ritekhela-team-view1 figure figcaption a,
+.ritekhela-team-view1-text,.ritekhela-team-view1 figure figcaption,.ritekhela-gallery-view1 h2,.widget_match_countdown h6,
+.widget_match_countdown .is-countdown,.ritekhela-latest-result-list,.ritekhela-blog-view3-inner,.ritekhela-blog-view3 figure a:before,
+.ritekhela-team-view2-text,.ritekhela-testimonials-view1-inner,.ritekhela-testimonials-view1 .slick-arrow,.ritekhela-subheader,
+.ritekhela-fixture-list-vs span,.ritekhela-fixture-list-pool,.ritekhela-pagination ul li a,.ritekhela-modren-match-text .ticket-buy-btn,
+.ritekhela-fixture-detail figcaption,.ritekhela-tags a,.ritekhela-form form p input[type="submit"],.widget_categories ul li,
+.ritekhela-player-thumb-wrap,.ritekhela-blog-view4 figure a:before,.ritekhela-error-section-inner,
+.ritekhela-contact-list i {
+	background-color: #3e454c;
+}
+
+.ritekhela-border-color-two,.ritekhela-border-colorhover-two:hover,.ritekhela-blog-view1-btn,.ritekhela-cartbox-btn,
+.ritekhela-team-view3-btn,.ritekhela-blog-view4-btn {
+	border-color: #3e454c;
+}
+.ritekhela-team-view1 figure figcaption:before,.widget_match_countdown h6:before,
+.widget_match_countdown h6:after,.ritekhela-team-view2-text:before,
+.ritekhela-team-view2-text:after,.ritekhela-fixture-list-pool:before,
+.ritekhela-fixture-list-pool:after,.ritekhela-fixture-detail figcaption:before {
+	border-bottom-color: #3e454c;
+}
+.ritekhela-team-view1-text:before,.ritekhela-gallery-view1 h2:before,
+.ritekhela-latest-result-list:before,.ritekhela-team-view2-wrap:before,
+.ritekhela-testimonials-view1-inner:after,.ritekhela-subheader:before,
+.ritekhela-pagination ul li a:before,.ritekhela-contact-list i:after {
+	border-top-color: #3e454c;
+}
+

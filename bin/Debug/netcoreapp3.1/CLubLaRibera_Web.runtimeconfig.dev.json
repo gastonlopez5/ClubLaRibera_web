@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\meteorologia\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\meteorologia\\.nuget\\packages"
+    ]
+  }
+}

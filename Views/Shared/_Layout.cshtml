@@ -9,15 +9,15 @@
     <title>Club La Ribera</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/fontawesome-all.css">
-    <link rel="stylesheet" href="css/slick-slider.css">
-    <!--<link rel="stylesheet" href="css/fancybox.css">-->
-    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="css/smartmenus.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/color.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/fontawesome-all.css" rel="stylesheet" />
+    <link href="~/css/slick-slider.css" rel="stylesheet" />
+    <link href="~/css/jquery.fancybox.min.css" rel="stylesheet" />
+    <link href="~/css/smartmenus.css" rel="stylesheet" />
+    <link href="~/style.css" rel="stylesheet" />
+    <link href="~/css/color.css" rel="stylesheet" />
+    <link href="~/css/responsive.css" rel="stylesheet" />
+
 </head>
 <body class="home">
     <div id="ritekhela-loader">
@@ -144,6 +144,48 @@
         <!--// Header //-->
 
         <div>
+            @if (ViewBag.Id != null)
+            {//alta exitosa
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>¡Éxito!</strong> @ViewBag.Id
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><span class="lnr lnr-cross-circle"></span></span>
+                    </button>
+                </div>
+            }
+            else if (ViewBag.Mensaje != null)
+            {//cartel general
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>Información:</strong> @ViewBag.Mensaje
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><span class="lnr lnr-cross-circle"></span></span>
+                    </button>
+                </div>
+            }
+            else if (ViewBag.Error != null)
+            {//alta exitosa
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>¡Error!</strong> @ViewBag.Error
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><span class="lnr lnr-cross-circle"></span></span>
+                    </button>
+                </div>
+            }
+            else if (!String.IsNullOrWhiteSpace(ViewBag.Error))
+            {//ocurrió un error
+                <environment names="Development">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>¡Error!</strong> Ocurrió: @ViewBag.Error
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><span class="lnr lnr-cross-circle"></span></span>
+                        </button>
+                        <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false"><span class="lnr lnr-plus-circle"></span></a>
+                        <div class="collapse multi-collapse" id="multiCollapseExample1">
+                            @ViewBag.StackTrace
+                        </div>
+                    </div>
+                </environment>
+            }
             <main role="main">
                 @RenderBody()
             </main>
@@ -193,27 +235,6 @@
         <!--// Footer //-->
     </div>
 
-    <!--// Login ModalBox //-->
-    <div class="loginmodalbox modal fade" id="ritekhelamodalcenter" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-body ritekhela-bgcolor-two">
-                    <h5 class="modal-title">Ingresa a tu cuenta</h5>
-                    <a href="#" class="close ritekhela-bgcolor-two" data-dismiss="modal" aria-label="Close">
-                        <i class="fa fa-times"></i>
-                    </a>
-                    <form class="loginmodalbox-search">
-                        <input type="text" value="Nombre de usuario" onblur="if(this.value == '') { this.value ='Nombre de usuario'; }" onfocus="if(this.value =='Nombre de usuario') { this.value = ''; }">
-                        <input type="text" value="Contraseña" onblur="if(this.value == '') { this.value ='Contraseña'; }" onfocus="if(this.value =='Contraseña') { this.value = ''; }">
-                        <input type="submit" value="Ingresar" class="ritekhela-bgcolor">
-                        <input type="submit" value="Registrarme" class="ritekhela-bgcolor">
-                        <a href="#" class="loginmodalbox-forget">¿Olvidaste tu contraseña?</a>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!--// Search ModalBox //-->
     <div class="loginmodalbox modal fade" id="ritekhelamodalsearch" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -233,17 +254,17 @@
     </div>
 
     <!-- jQuery -->
-    <script src="script/jquery.js"></script>
-    <script src="script/popper.min.js"></script>
-    <script src="script/bootstrap.min.js"></script>
-    <script src="script/slick.slider.min.js"></script>
-    <!----<script src="script/fancybox.min.js"></script>-->
-    <script src="script/jquery.fancybox.min.js"></script>
-    <script src="script/isotope.min.js"></script>
-    <script src="script/smartmenus.min.js"></script>
-    <script src="script/progressbar.js"></script>
-    <script src="script/jquery.countdown.min.js"></script>
-    <script src="script/functions.js"></script>
+    <script src="~/script/bootstrap.min.js"></script>
+    <script src="~/script/jquery.js"></script>
+    <script src="~/script/popper.min.js"></script>
+    <script src="~/script/slick.slider.min.js"></script>
+    <script src="~/script/isotope.min.js"></script>
+    <script src="~/script/smartmenus.min.js"></script>
+    <script src="~/script/progressbar.js"></script>
+    <script src="~/script/jquery.countdown.min.js"></script>
+    <script src="~/script/functions.js"></script>
+    <script src="~/script/jquery.fancybox.min.js"></script>
+
     <script>
         $('[data-fancybox]').fancybox({
             animationEffect: "slide",

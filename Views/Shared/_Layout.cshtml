@@ -46,7 +46,7 @@
                         </aside>
                         <aside class="col-md-6">
                             <ul class="ritekhela-user-strip">
-                                <li><a href="#" data-toggle="modal" data-target="#ritekhelamodalcenter"><i class="fa fa-user-alt"></i> Iniciar sesión </a></li>
+                                <li><a href="#" onclick="modalLogin();"><i class="fa fa-user-alt"></i> Iniciar sesión </a></li>
                                 <li><a href="#" data-toggle="modal" data-target="#ritekhelamodalrg"><i class="fa fa-sign-in-alt"></i> Cerrar sesión </a></li>
                             </ul>
                         </aside>
@@ -254,16 +254,17 @@
     </div>
 
     <!-- jQuery -->
-    <script src="~/script/bootstrap.min.js"></script>
     <script src="~/script/jquery.js"></script>
     <script src="~/script/popper.min.js"></script>
+    <script src="~/script/bootstrap.min.js"></script>
     <script src="~/script/slick.slider.min.js"></script>
+    <script src="~/script/jquery.fancybox.min.js"></script>
     <script src="~/script/isotope.min.js"></script>
     <script src="~/script/smartmenus.min.js"></script>
     <script src="~/script/progressbar.js"></script>
     <script src="~/script/jquery.countdown.min.js"></script>
     <script src="~/script/functions.js"></script>
-    <script src="~/script/jquery.fancybox.min.js"></script>
+
 
     <script>
         $('[data-fancybox]').fancybox({
@@ -276,7 +277,25 @@
                 "download",
                 "close"
             ]
-        })
+        });
+
+        function modalLogin() {
+            var abrirModal = () => {
+                $('#ritekhelamodalcenter').modal("show");
+            }
+
+            $.ajax({
+                    url: `@Url.Action("LoginModal", "Usuarios")`,
+                }).done(res => {
+                    console.log("Modal: ", res);
+                    var div = document.createElement("div");
+                    div.innerHTML = res;
+                    document.body.appendChild(div);
+                    abrirModal();
+                }).fail(res => {
+                    console.log("Error: ", res);
+                });
+        }
     </script>
 
     @RenderSection("Scripts", required: false)

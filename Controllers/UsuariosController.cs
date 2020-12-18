@@ -111,7 +111,7 @@ namespace CLubLaRibera_Web.Controllers
         [AllowAnonymous]
         public ActionResult LoginModal()
         {
-            return PartialView("_LopginModal", new LoginView());
+            return PartialView("_LoginModal", new LoginView());
         }
 
         [HttpPost]

@@ -1,0 +1,49 @@
+﻿@model CLubLaRibera_Web.Models.Usuario
+
+<form asp-action="RegistrarUsuario" class="loginmodalbox-search">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Nombre" class="ritekhela-color"></label>
+        <input asp-for="Nombre" class="form-control" />
+        @Html.ValidationMessageFor(s => s.Nombre)
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Apellido" class="ritekhela-color"></label>
+        <input asp-for="Apellido" class="form-control" />
+        <span asp-validation-for="Apellido" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="ritekhela-color"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Telefono" class="ritekhela-color"></label>
+        <input asp-for="Telefono" class="form-control" />
+        <span asp-validation-for="Telefono" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Dni" class="ritekhela-color"></label>
+        <input asp-for="Dni" class="form-control" />
+        <span asp-validation-for="Dni" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="FotoPerfil" class="ritekhela-color">Subir foto de perfil</label>
+        <input type="button" class="btn btn-primary" value="Seleccionar archivo" onclick="document.getElementById('FotoPerfil').click();" />
+        <input id="FotoPerfil" name="Archivo" type="file" accept="image/*" class="form-control" style="display:none" />
+        <span asp-validation-for="FotoPerfil" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="RolId" class="ritekhela-color">¿Cuál es tu rol dentro de la institución?</label>
+        <select class="form-control" name="RolId">
+            <option value="2">Padre o Tutor</option>
+            <option value="3">Profesor</option>
+            <option value="4">Fan</option>
+        </select>
+        <span asp-validation-for="RolId" class="text-danger"></span>
+    </div>
+    <input type="submit" value="Ingresar" class="ritekhela-bgcolor">
+</form>
+
+

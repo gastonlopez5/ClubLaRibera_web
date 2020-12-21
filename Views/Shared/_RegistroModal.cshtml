@@ -1,0 +1,24 @@
+﻿<div class="loginmodalbox modal fade" id="ritekhelamodalcenter" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body ritekhela-bgcolor-two">
+                <h5 class="modal-title">Registrarme</h5>
+                <a href="#" class="close ritekhela-bgcolor-two" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-times"></i>
+                </a>
+                @if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>¡Error!</strong> @ViewBag.Error
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><span class="lnr lnr-cross-circle"></span></span>
+                        </button>
+                    </div>
+                }
+                <partial name="../Usuarios/RegistrarUsuario.cshtml" />
+            </div>
+        </div>
+    </div>
+</div>
+
+

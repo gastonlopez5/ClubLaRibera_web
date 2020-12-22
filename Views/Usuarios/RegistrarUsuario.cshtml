@@ -1,6 +1,7 @@
 ﻿@model CLubLaRibera_Web.Models.Usuario
 
 <form asp-action="RegistrarUsuario" class="loginmodalbox-search">
+    <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
         <label asp-for="Nombre" class="ritekhela-color"></label>
@@ -42,7 +43,7 @@
         </select>
         <span asp-validation-for="RolId" class="text-danger"></span>
     </div>
-    <input type="submit" value="Ingresar" class="ritekhela-bgcolor">
+    <input type="submit" value="Enviar" class="ritekhela-bgcolor" data-save="modal">
 </form>
 
 

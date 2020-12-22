@@ -16,34 +16,38 @@ namespace CLubLaRibera_Web.Models
         [Required, DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required, DataType(DataType.Password)]
+        [DataType(DataType.Password)]
+        [NotMapped]
         public string Clave { get; set; }
 
-        [Required]
+        [NotMapped]
         public int RolId { get; set; }
         
         [ForeignKey("RolId")]
         public TipoUsuario TipoUsuario { get; set; }
 
+        [NotMapped]
         public int GrupoId { get; set; }
 
         [ForeignKey("GrupoId")]
         public Grupo Grupo { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Complete el campo Nombre")]
         public string Nombre { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Complete el campo Apellido")]
         public string Apellido { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Complete el campo Telefono")]
         public string Telefono { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Complete el campo Dni")]
         public string Dni { get; set; }
 
+        [NotMapped]
         public string FotoPerfil { get; set; }
 
+        [NotMapped]
         public Boolean Estado { get; set; }
     }
 }

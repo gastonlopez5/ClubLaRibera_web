@@ -47,7 +47,7 @@
                         <aside class="col-md-6">
                             <ul class="ritekhela-user-strip">
                                 <li><a href="#" onclick="modalLogin();"><i class="fa fa-user-alt"></i> Iniciar sesión </a></li>
-                                <li><a href="#" onclick="modalRegistro();"><i class="fa fa-user-check"></i> Registrarme </a></li>
+                                <li><a href="#" data-toggle="ajax-modal" data-target="#add-contact" data-url="@Url.Action("RegistroModal", "Usuarios")"><i class="fa fa-user-check"></i> Registrarme </a></li>
                                 <li><a href="#" data-toggle="modal" data-target="#ritekhelamodalrg"><i class="fa fa-sign-in-alt"></i> Cerrar sesión </a></li>
                             </ul>
                         </aside>
@@ -187,9 +187,11 @@
                     </div>
                 </environment>
             }
-            <main role="main">
-                @RenderBody()
-            </main>
+        <main role="main">
+            <div id="modal-placeholder"></div>
+
+            @RenderBody()
+        </main>
         </div>
 
         <!--// Footer //-->
@@ -255,7 +257,7 @@
     </div>
 
     <!-- jQuery -->
-   
+
     <script src="~/script/jquery.js"></script>
     <script src="~/script/popper.min.js"></script>
     <script src="~/script/bootstrap.min.js"></script>
@@ -266,8 +268,7 @@
     <script src="~/script/progressbar.js"></script>
     <script src="~/script/jquery.countdown.min.js"></script>
     <script src="~/script/functions.js"></script>
-
-
+    <script src="~/script/site.js"></script>
 
     <script>
         $('[data-fancybox]').fancybox({
@@ -317,8 +318,8 @@
                 });
         }
     </script>
-    
-    
+
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

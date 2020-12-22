@@ -166,6 +166,7 @@ namespace CLubLaRibera_Web.Controllers
         public ActionResult RegistroModal()
         {
             ViewBag.Roles = _context.Roles.ToList();
+            //return View();
             return PartialView("_RegistroModal", new Usuario());
         }
 
@@ -175,64 +176,71 @@ namespace CLubLaRibera_Web.Controllers
         {
             try
             {
-                string foto = null;
-
-                if (_context.Usuarios.Any(x => x.Email == usuario.Email))
+                if (ModelState.IsValid)
                 {
-                    ViewBag.Error = "Ya existe un propietario con ese email o dni";
-                    return PartialView("_RegistroModal", usuario);
+                    string foto = null;
+
+                    if (_context.Usuarios.Any(x => x.Email == usuario.Email))
+                    {
+                        ViewBag.Error = "Ya existe un propietario con ese email o dni";
+                        return PartialView("_RegistroModal", usuario);
+                    }
+                    else
+                    {
+                        string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                        password: usuario.Clave,
+                        salt: System.Text.Encoding.ASCII.GetBytes("Salt"),
+                        prf: KeyDerivationPrf.HMACSHA1,
+                        iterationCount: 1000,
+                        numBytesRequested: 256 / 8));
+
+                        usuario.Estado = true;
+                        usuario.RolId = 1;
+                        usuario.Clave = hashed;
+
+                        if (usuario.FotoPerfil != null)
+                        {
+                            foto = usuario.FotoPerfil;
+                            usuario.FotoPerfil = "a";
+                        }
+
+                        _context.Usuarios.Add(usuario);
+                        await _context.SaveChangesAsync();
+
+                        if (usuario.FotoPerfil != null)
+                        {
+                            var user = _context.Usuarios.FirstOrDefault(x => x.Email == usuario.Email);
+                            var fileName = "fotoperfil.png";
+                            string wwwPath = environment.WebRootPath;
+                            string path = wwwPath + "/fotoperfil/" + user.Id;
+                            string filePath = "/fotoperfil/" + user.Id + "/" + fileName;
+                            string pathFull = Path.Combine(path, fileName);
+
+                            if (!Directory.Exists(path))
+                            {
+                                Directory.CreateDirectory(path);
+                            }
+
+                            using (var fileStream = new FileStream(pathFull, FileMode.Create))
+                            {
+                                var bytes = Convert.FromBase64String(foto);
+                                fileStream.Write(bytes, 0, bytes.Length);
+                                fileStream.Flush();
+                                user.FotoPerfil = filePath;
+                            }
+
+                            _context.Usuarios.Update(user);
+                            _context.SaveChanges();
+                        }
+
+                        ViewBag.Id = "Usuario registrado exitosamente! Ingrese por favor";
+
+                        return RedirectToAction(nameof(Index), "Home");
+                    }
                 }
                 else
                 {
-                    string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                    password: usuario.Clave,
-                    salt: System.Text.Encoding.ASCII.GetBytes("Salt"),
-                    prf: KeyDerivationPrf.HMACSHA1,
-                    iterationCount: 1000,
-                    numBytesRequested: 256 / 8));
-
-                    usuario.Estado = true;
-                    usuario.RolId = 1;
-                    usuario.Clave = hashed;
-
-                    if (usuario.FotoPerfil != null)
-                    {
-                        foto = usuario.FotoPerfil;
-                        usuario.FotoPerfil = "a";
-                    }
-
-                    _context.Usuarios.Add(usuario);
-                    await _context.SaveChangesAsync();
-
-                    if (usuario.FotoPerfil != null)
-                    {
-                        var user = _context.Usuarios.FirstOrDefault(x => x.Email == usuario.Email);
-                        var fileName = "fotoperfil.png";
-                        string wwwPath = environment.WebRootPath;
-                        string path = wwwPath + "/fotoperfil/" + user.Id;
-                        string filePath = "/fotoperfil/" + user.Id + "/" + fileName;
-                        string pathFull = Path.Combine(path, fileName);
-
-                        if (!Directory.Exists(path))
-                        {
-                            Directory.CreateDirectory(path);
-                        }
-
-                        using (var fileStream = new FileStream(pathFull, FileMode.Create))
-                        {
-                            var bytes = Convert.FromBase64String(foto);
-                            fileStream.Write(bytes, 0, bytes.Length);
-                            fileStream.Flush();
-                            user.FotoPerfil = filePath;
-                        }
-
-                        _context.Usuarios.Update(user);
-                        _context.SaveChanges();
-                    }
-
-                    ViewBag.Id = "Usuario registrado exitosamente! Ingrese por favor";
-
-                    return RedirectToAction(nameof(Index), "Home");
+                    return PartialView("_RegistroModal", usuario);
                 }
             }
             catch (Exception ex)

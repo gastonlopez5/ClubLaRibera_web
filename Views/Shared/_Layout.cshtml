@@ -17,6 +17,8 @@
     <link href="~/style.css" rel="stylesheet" />
     <link href="~/css/color.css" rel="stylesheet" />
     <link href="~/css/responsive.css" rel="stylesheet" />
+    <link href="~/css/alertify.min.css" rel="stylesheet" />
+    <link href="~/css/default.min.css" rel="stylesheet" />
 
 </head>
 <body class="home">
@@ -145,14 +147,12 @@
         <!--// Header //-->
 
         <div>
-            @if (ViewBag.Id != null)
+            @if (ViewBag.Success != null)
             {//alta exitosa
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>¡Éxito!</strong> @ViewBag.Id
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true"><span class="lnr lnr-cross-circle"></span></span>
-                    </button>
-                </div>
+                <script>
+                    alertify.set('notifier', 'position', 'top-center');
+                    alertify.success(@ViewBag.Success);
+                </script>
             }
             else if (ViewBag.Mensaje != null)
             {//cartel general
@@ -269,6 +269,7 @@
     <script src="~/script/jquery.countdown.min.js"></script>
     <script src="~/script/functions.js"></script>
     <script src="~/script/site.js"></script>
+    <script src="~/script/alertify.min.js"></script>
 
     <script>
         $('[data-fancybox]').fancybox({

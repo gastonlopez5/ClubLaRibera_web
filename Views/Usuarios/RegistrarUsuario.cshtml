@@ -29,10 +29,9 @@
         <span asp-validation-for="Dni" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label for="FotoPerfil" class="ritekhela-color">Subir foto de perfil</label>
-        <input type="button" class="btn btn-primary" value="Seleccionar archivo" onclick="document.getElementById('FotoPerfil').click();" />
-        <input id="FotoPerfil" name="Archivo" type="file" accept="image/*" class="form-control" style="display:none" />
-        <span asp-validation-for="FotoPerfil" class="text-danger"></span>
+        <label for="Archivo" class="ritekhela-color">Subir foto de perfil</label>
+        <input id="Archivo" name="Archivo" type="file" accept="image/*" class="form-control" />
+        <span asp-validation-for="Archivo" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="RolId" class="ritekhela-color">¿Cuál es tu rol dentro de la institución?</label>

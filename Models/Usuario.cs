@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using CLubLaRibera_Web.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace CLubLaRibera_Web.Models
 {
@@ -44,10 +45,10 @@ namespace CLubLaRibera_Web.Models
         [Required(ErrorMessage = "Complete el campo Dni")]
         public string Dni { get; set; }
 
-        [NotMapped]
         public string FotoPerfil { get; set; }
 
-        [NotMapped]
+        public IFormFile Archivo { get; set; }
+
         public Boolean Estado { get; set; }
     }
 }

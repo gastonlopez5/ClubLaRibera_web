@@ -47,6 +47,7 @@ namespace CLubLaRibera_Web.Models
 
         public string FotoPerfil { get; set; }
 
+        [NotMapped]
         public IFormFile Archivo { get; set; }
 
         public Boolean Estado { get; set; }

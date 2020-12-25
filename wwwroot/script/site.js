@@ -16,11 +16,40 @@ $(function () {
     placeholderElement.on('click', '[data-save="modal"]', function (event) {
         event.preventDefault();
 
+        var formData = new FormData();
+        formData.append("Archivo", $('#Archivo')[0].files[0]); //append the image file
+
         var form = $(this).parents('.modal').find('form');
         var actionUrl = form.attr('action');
         var dataToSend = form.serialize();
 
-        $.post(actionUrl, dataToSend).done(function (data) {
+        var other_data = $('form').serializeArray();
+        $.each(other_data, function (key, input) { //append other input value
+            formData.append(input.name, input.value);
+        });
+
+        $.ajax({
+            type: "POST",
+            url: actionUrl,
+            data: formData,
+            contentType: false, // Not to set any content header
+            processData: false, // Not to process data
+            success: function (res) {
+                var newBody = $('.modal-body', res);
+                placeholderElement.find('.modal-body').replaceWith(newBody);
+
+                var isValid = newBody.find('[name="IsValid"]').val() == 'True';
+                if (isValid) {
+                    placeholderElement.find('.modal').modal('hide');
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Status: " + textStatus); alert("Error: " + errorThrown);
+            }  
+        })
+
+        /*
+        $.post(actionUrl, formData).done(function (data) {
             var newBody = $('.modal-body', data);
             placeholderElement.find('.modal-body').replaceWith(newBody);
 
@@ -29,5 +58,6 @@ $(function () {
                 placeholderElement.find('.modal').modal('hide');
             }
         });
+        */
     });
 });

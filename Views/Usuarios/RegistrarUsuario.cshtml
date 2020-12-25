@@ -1,6 +1,6 @@
 ﻿@model CLubLaRibera_Web.Models.Usuario
 
-<form asp-action="RegistrarUsuario" class="loginmodalbox-search">
+<form asp-action="RegistrarUsuario" class="loginmodalbox-search" enctype="multipart/form-data">
     <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
@@ -30,7 +30,8 @@
     </div>
     <div class="form-group">
         <label for="Archivo" class="ritekhela-color">Subir foto de perfil</label>
-        <input id="Archivo" name="Archivo" type="file" accept="image/*" class="form-control" />
+        <input type="button" class="btn btn-primary" value="Seleccionar archivo" onclick="document.getElementById('Archivo').click();" />
+        <input id="Archivo" name="Archivo" type="file" accept="image/*" class="form-control" style="display:none" />
         <span asp-validation-for="Archivo" class="text-danger"></span>
     </div>
     <div class="form-group">

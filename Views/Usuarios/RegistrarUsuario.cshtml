@@ -30,9 +30,12 @@
     </div>
     <div class="form-group">
         <label for="Archivo" class="ritekhela-color">Subir foto de perfil</label>
-        <input type="button" class="btn btn-primary" value="Seleccionar archivo" onclick="document.getElementById('Archivo').click();" />
+        <input id="button" class="btn btn-primary" value="Seleccionar archivo" onclick="document.getElementById('Archivo').click();" />
         <input id="Archivo" name="Archivo" type="file" accept="image/*" class="form-control" style="display:none" />
         <span asp-validation-for="Archivo" class="text-danger"></span>
+        <br />
+        <br />
+        <div id="imagePreview"></div>
     </div>
     <div class="form-group">
         <label asp-for="RolId" class="ritekhela-color">¿Cuál es tu rol dentro de la institución?</label>
@@ -45,6 +48,8 @@
     </div>
     <input type="submit" value="Enviar" class="ritekhela-bgcolor" data-save="modal">
 </form>
+
+
 
 
 

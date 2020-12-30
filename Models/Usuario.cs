@@ -18,7 +18,6 @@ namespace CLubLaRibera_Web.Models
         public string Email { get; set; }
 
         [DataType(DataType.Password)]
-        [NotMapped]
         public string Clave { get; set; }
 
         [NotMapped]

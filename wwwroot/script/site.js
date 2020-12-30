@@ -21,7 +21,6 @@ $(function () {
 
         var form = $(this).parents('.modal').find('form');
         var actionUrl = form.attr('action');
-        var dataToSend = form.serialize();
 
         var other_data = $('form').serializeArray();
         $.each(other_data, function (key, input) { //append other input value
@@ -38,10 +37,20 @@ $(function () {
                 var newBody = $('.modal-body', res);
                 placeholderElement.find('.modal-body').replaceWith(newBody);
 
-                var isValid = newBody.find('[name="IsValid"]').val() == 'True';
-                if (isValid) {
-                    placeholderElement.find('.modal').modal('hide');
-                }
+                var error = newBody.find('[name="IsError"]').val();
+                var success = newBody.find('[name="IsSuccess"]').val();
+                var valid = newBody.find('[name="IsValid"]').val() == "True";
+                console.log(error);
+                if (error != null) {
+                    if (error.length != 0) {
+                        alertify.set('notifier', 'position', 'top-center');
+                        alertify.error(newBody.find('[name="IsError"]').val());
+                    } else if (valid) {
+                        alertify.set('notifier', 'position', 'top-center');
+                        alertify.success(success);
+                        placeholderElement.find('.modal').modal('hide');
+                    }
+                } 
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("Status: " + textStatus); alert("Error: " + errorThrown);
@@ -81,13 +90,17 @@ $(function () {
                 }
 
             } else {
-                alert("This browser does not support FileReader.");
+                alertify.set('notifier', 'position', 'top-center');
+                alertify.error('Este buscador no soporta FileReader');
             }
         } else {
-            //alert("Pls select only images");
             alertify.set('notifier', 'position', 'top-center');
             alertify.error('Por favor, seleccione solo imagenes');
         }
     });
 });
+
+
+
+
 

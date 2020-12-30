@@ -178,7 +178,10 @@ namespace CLubLaRibera_Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    string foto = null;
+                    List<String> permitidos = new List<string>();
+                    permitidos.AddRange(config["Permitidos"].Split());
+                    long limite_kb = 600;
+                    usuario.Clave = "4321";
 
                     if (_context.Usuarios.Any(x => x.Email == usuario.Email))
                     {
@@ -197,45 +200,45 @@ namespace CLubLaRibera_Web.Controllers
                         usuario.Estado = true;
                         usuario.RolId = 1;
                         usuario.Clave = hashed;
+                        usuario.GrupoId = 9;
 
-                        if (usuario.FotoPerfil != null)
+                        if (usuario.Archivo != null && (!permitidos.Contains(usuario.Archivo.ContentType) || usuario.Archivo.Length >= limite_kb * 1024))
                         {
-                            foto = usuario.FotoPerfil;
-                            usuario.FotoPerfil = "a";
+                            ViewBag.Error = "El archivo seleccionado no es una imagen o excede el tamaño de 600 kb";
+                            return PartialView("_RegistroModal", usuario);
                         }
 
                         _context.Usuarios.Add(usuario);
                         await _context.SaveChangesAsync();
 
-                        if (usuario.FotoPerfil != null)
+                        if (usuario.Archivo != null)
                         {
-                            var user = _context.Usuarios.FirstOrDefault(x => x.Email == usuario.Email);
-                            var fileName = "fotoperfil.png";
+                            var id = _context.Usuarios.FirstOrDefault(u => u.Email == usuario.Email).Id;
                             string wwwPath = environment.WebRootPath;
-                            string path = wwwPath + "/fotoperfil/" + user.Id;
-                            string filePath = "/fotoperfil/" + user.Id + "/" + fileName;
-                            string pathFull = Path.Combine(path, fileName);
+                            string path = Path.Combine(wwwPath, "FotoPerfil\\" + id);
 
                             if (!Directory.Exists(path))
                             {
                                 Directory.CreateDirectory(path);
                             }
 
-                            using (var fileStream = new FileStream(pathFull, FileMode.Create))
+                            string fileName = Path.GetFileName(usuario.Archivo.FileName);
+                            string pathCompleto = Path.Combine(path, fileName);
+                            usuario.FotoPerfil = Path.Combine("\\FotoPerfil\\" + id, fileName);
+                            usuario.Id = id;
+
+                            using (FileStream stream = new FileStream(pathCompleto, FileMode.Create))
                             {
-                                var bytes = Convert.FromBase64String(foto);
-                                fileStream.Write(bytes, 0, bytes.Length);
-                                fileStream.Flush();
-                                user.FotoPerfil = filePath;
+                                usuario.Archivo.CopyTo(stream);
                             }
 
-                            _context.Usuarios.Update(user);
-                            _context.SaveChanges();
+                            _context.Usuarios.Update(usuario);
+                            await _context.SaveChangesAsync();
                         }
 
-                        ViewBag.Id = "Usuario registrado exitosamente! Ingrese por favor";
+                        ViewBag.Success = "Usuario registrado exitosamente! Recibirá en su correo la contraseña para ingresar";
 
-                        return RedirectToAction(nameof(Index), "Home");
+                        return PartialView("_RegistroModal", usuario);
                     }
                 }
                 else

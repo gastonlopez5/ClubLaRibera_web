@@ -1,3 +1,5 @@
+C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\bin\Debug\netcoreapp3.1\CLubLaRibera_Web.Views.pdb
+C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\CLubLaRibera_Web.Views.pdb
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\CLubLaRibera_Web.AssemblyInfoInputs.cache
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\CLubLaRibera_Web.AssemblyInfo.cs
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\CLubLaRibera_Web.csproj.CoreCompileInputs.cache
@@ -14,8 +16,12 @@ C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\n
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginModal.cshtml.g.cs
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_RegistroModal.cshtml.g.cs
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\Razor\Views\Usuarios\Login.cshtml.g.cs
+C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\Razor\Views\Usuarios\RegistrarUsuario.cshtml.g.cs
+C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\Razor\Views\Usuarios\RegistroModal.cshtml.g.cs
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\CLubLaRibera_Web.RazorTargetAssemblyInfo.cache
@@ -31,7 +37,6 @@ C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\bin\Debug\n
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\bin\Debug\netcoreapp3.1\CLubLaRibera_Web.dll
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\bin\Debug\netcoreapp3.1\CLubLaRibera_Web.pdb
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\bin\Debug\netcoreapp3.1\CLubLaRibera_Web.Views.dll
-C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\bin\Debug\netcoreapp3.1\CLubLaRibera_Web.Views.pdb
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\bin\Debug\netcoreapp3.1\Google.Protobuf.dll
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\bin\Debug\netcoreapp3.1\JWT.dll
@@ -148,11 +153,6 @@ C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\bin\Debug\n
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\CLubLaRibera_Web.Views.pdb
+C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\CLubLaRibera_Web.csprojAssemblyReference.cache
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\CLubLaRibera_Web.csproj.CopyComplete
 C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\CLubLaRibera_Web.genruntimeconfig.cache
-C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\CLubLaRibera_Web.csprojAssemblyReference.cache
-C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\Razor\Views\Usuarios\Login.cshtml.g.cs
-C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginModal.cshtml.g.cs
-C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\Razor\Views\Usuarios\RegistroModal.cshtml.g.cs
-C:\Users\meteorologia\source\repos\CLubLaRibera_Web\CLubLaRibera_Web\obj\Debug\netcoreapp3.1\Razor\Views\Usuarios\RegistrarUsuario.cshtml.g.cs

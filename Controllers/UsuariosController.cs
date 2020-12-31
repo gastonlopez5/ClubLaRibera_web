@@ -241,7 +241,7 @@ namespace CLubLaRibera_Web.Controllers
                             ViewBag.Success = "Usuario registrado exitosamente! Recibirá en su correo la contraseña para ingresar";
 
                             utilidades.EnciarCorreo(usuario.Email,
-                                "Alta de Usuario",
+                                "Club La Ribera - Alta de Usuario",
                                 "<h2>Gracias por registrarte " + usuario.Apellido + " " + usuario.Nombre + "!!</h2>" +
                                 "<p>Recuerda modificar la contraseña cuando ingreses.</p>" +
                                 "<br />" +

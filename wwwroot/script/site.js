@@ -12,13 +12,15 @@ $(function () {
             placeholderElement.find('.modal').modal('show');
         });
     });
-
+    
     placeholderElement.on('click', '[data-save="modal"]', function (event) {
         event.preventDefault();
 
         var formData = new FormData();
-        formData.append("Archivo", $('#Archivo')[0].files[0]); //append the image file
-
+        if ($('#Archivo').length) {
+            formData.append("Archivo", $('#Archivo')[0].files[0]); //append the image file
+        }
+        
         var form = $(this).parents('.modal').find('form');
         var actionUrl = form.attr('action');
 
@@ -50,7 +52,11 @@ $(function () {
                         alertify.success(success);
                         placeholderElement.find('.modal').modal('hide');
                     }
-                } 
+                } else {
+                    placeholderElement.find('.modal').modal('hide');
+
+                    
+                }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("Status: " + textStatus); alert("Error: " + errorThrown);

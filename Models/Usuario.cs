@@ -20,13 +20,11 @@ namespace CLubLaRibera_Web.Models
         [DataType(DataType.Password)]
         public string Clave { get; set; }
 
-        [NotMapped]
         public int RolId { get; set; }
         
         [ForeignKey("RolId")]
         public TipoUsuario TipoUsuario { get; set; }
 
-        [NotMapped]
         public int GrupoId { get; set; }
 
         [ForeignKey("GrupoId")]

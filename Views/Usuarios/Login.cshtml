@@ -1,6 +1,9 @@
 ﻿@model CLubLaRibera_Web.Models.LoginView
 
 <form asp-action="Login" class="loginmodalbox-search">
+    <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+    <input name="IsError" type="hidden" value="@ViewBag.Error" />
+    <input name="IsSuccess" type="hidden" value="@ViewBag.Success" />
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
         <label asp-for="Email" class="ritekhela-color"></label>
@@ -12,6 +15,6 @@
         <input asp-for="Clave" class="form-control" />
         <span asp-validation-for="Clave" class="text-danger"></span>
     </div>
-    <input type="submit" value="Ingresar" class="ritekhela-bgcolor">
+    <input type="submit" value="Ingresar" class="ritekhela-bgcolor" data-save="modal">
     <a href="#" class="loginmodalbox-forget">¿Olvidaste tu contraseña?</a>
 </form>

@@ -48,7 +48,7 @@
                         </aside>
                         <aside class="col-md-6">
                             <ul class="ritekhela-user-strip">
-                                <li><a href="#" onclick="modalLogin();"><i class="fa fa-user-alt"></i> Iniciar sesión </a></li>
+                                <li><a href="#" data-toggle="ajax-modal" data-target="#add-contact" data-url="@Url.Action("LoginModal", "Usuarios")"><i class="fa fa-user-alt"></i> Iniciar sesión </a></li>
                                 <li><a href="#" data-toggle="ajax-modal" data-target="#add-contact" data-url="@Url.Action("RegistroModal", "Usuarios")"><i class="fa fa-user-check"></i> Registrarme </a></li>
                                 <li><a href="#" data-toggle="modal" data-target="#ritekhelamodalrg"><i class="fa fa-sign-in-alt"></i> Cerrar sesión </a></li>
                             </ul>
@@ -244,40 +244,6 @@
             ]
         });
 
-        function modalLogin() {
-            var abrirModal = () => {
-                $('#ritekhelamodalcenter').modal("show");
-            }
-
-            $.ajax({
-                    url: `@Url.Action("LoginModal", "Usuarios")`,
-                }).done(res => {
-                    console.log("Modal: ", res);
-                    var div = document.createElement("div");
-                    div.innerHTML = res;
-                    document.body.appendChild(div);
-                    abrirModal();
-                }).fail(res => {
-                    console.log("Error: ", res);
-                });
-        }
-        function modalRegistro() {
-            var abrirModal = () => {
-                $('#registrarUsuario').modal("show");
-            }
-
-            $.ajax({
-                    url: `@Url.Action("RegistroModal", "Usuarios")`,
-                }).done(res => {
-                    console.log("Modal: ", res);
-                    var div = document.createElement("div");
-                    div.innerHTML = res;
-                    document.body.appendChild(div);
-                    abrirModal();
-                }).fail(res => {
-                    console.log("Error: ", res);
-                });
-        }
     </script>
 
 

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -57,6 +58,8 @@ namespace CLubLaRibera_Web
             services.AddDbContext<DataContext>(
                 options => options.UseMySql(
                     Configuration["ConnectionStrings:DefaultConnection"]));
+
+            IdentityModelEventSource.ShowPII = true;
 
         }
 

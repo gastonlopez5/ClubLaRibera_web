@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -117,49 +118,60 @@ namespace CLubLaRibera_Web.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginView loginView)
         {
             try
             {
-                string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                if (ModelState.IsValid)
+                {
+                    string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
                     password: loginView.Clave,
                     salt: System.Text.Encoding.ASCII.GetBytes("Salt"),
                     prf: KeyDerivationPrf.HMACSHA1,
                     iterationCount: 1000,
                     numBytesRequested: 256 / 8));
-                var p = _context.Usuarios.FirstOrDefault(x => x.Email == loginView.Email);
-                if (p == null || p.Clave != hashed)
-                {
-                    ViewBag.Mensaje = "Email o Contraseña incorrectos";
-                    return View();
-                }
-                else
-                {
-                    var key = new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(config["TokenAuthentication:SecretKey"]));
-                    var credenciales = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-                    var claims = new List<Claim>
+                    var p = await _context.Usuarios
+                        .Include(a => a.TipoUsuario)
+                        .FirstOrDefaultAsync(a => a.Email == loginView.Email);
+
+                    if (p == null || p.Clave != hashed)
+                    {
+                        ViewBag.Error = "Email o Contraseña incorrectos";
+                        return PartialView("_LoginModal", loginView);
+                    }
+                    else
+                    {
+                        var key = new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(config["TokenAuthentication:SecretKey"]));
+                        var credenciales = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                        var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, p.Email),
                         new Claim(ClaimTypes.Role, p.TipoUsuario.Rol),
                     };
 
-                    var token = new JwtSecurityToken(
-                        issuer: config["TokenAuthentication:Issuer"],
-                        audience: config["TokenAuthentication:Audience"],
-                        claims: claims,
-                        expires: DateTime.Now.AddMinutes(60),
-                        signingCredentials: credenciales
-                    );
-                    return RedirectToAction(nameof(Index), "Home", new JwtSecurityTokenHandler().WriteToken(token));
-                }
+                        var token = new JwtSecurityToken(
+                            issuer: config["TokenAuthentication:Issuer"],
+                            audience: config["TokenAuthentication:Audience"],
+                            claims: claims,
+                            expires: DateTime.Now.AddMinutes(60),
+                            signingCredentials: credenciales
+                        );
 
+                        ViewBag.Success = "Bienvenido " + p.Nombre + " " + p.Apellido + "!!";
+
+                        return RedirectToAction(nameof(Index), "Home", new JwtSecurityTokenHandler().WriteToken(token));
+                    }
+                }
+                else
+                {
+                    return PartialView("_LoginModal", loginView);
+                }
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
                 ViewBag.StackTrate = ex.StackTrace;
-                return View();
+                return PartialView("_LoginModal", loginView);
             }
         }
 
@@ -206,10 +218,8 @@ namespace CLubLaRibera_Web.Controllers
                             return PartialView("_RegistroModal", usuario);
                         }
 
-                        /*
                         _context.Usuarios.Add(usuario);
                         await _context.SaveChangesAsync();
-                        */
 
                         if (usuario.Archivo != null)
                         {

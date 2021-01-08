@@ -12,7 +12,7 @@ $(function () {
             placeholderElement.find('.modal').modal('show');
         });
     });
-    
+
     placeholderElement.on('click', '[data-save="modal"]', function (event) {
         event.preventDefault();
 
@@ -42,7 +42,7 @@ $(function () {
                 var error = newBody.find('[name="IsError"]').val();
                 var success = newBody.find('[name="IsSuccess"]').val();
                 var valid = newBody.find('[name="IsValid"]').val() == "True";
-                console.log(error);
+
                 if (error != null) {
                     if (error.length != 0) {
                         alertify.set('notifier', 'position', 'top-center');
@@ -52,11 +52,7 @@ $(function () {
                         alertify.success(success);
                         placeholderElement.find('.modal').modal('hide');
                     }
-                } else {
-                    placeholderElement.find('.modal').modal('hide');
-
-                    
-                }
+                } 
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert("Status: " + textStatus); alert("Error: " + errorThrown);

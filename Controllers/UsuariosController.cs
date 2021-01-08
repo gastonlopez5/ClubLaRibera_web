@@ -1,4 +1,5 @@
 ﻿using CLubLaRibera_Web.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -19,7 +20,6 @@ using System.Threading.Tasks;
 
 namespace CLubLaRibera_Web.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Authorize(Policy = "Administrador")]
     public class UsuariosController : Controller
     {
@@ -141,25 +141,47 @@ namespace CLubLaRibera_Web.Controllers
                     }
                     else
                     {
-                        var key = new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(config["TokenAuthentication:SecretKey"]));
-                        var credenciales = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
                         var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, p.Email),
-                        new Claim(ClaimTypes.Role, p.TipoUsuario.Rol),
-                    };
+                        {
+                            new Claim(ClaimTypes.Name, p.Email),
+                            new Claim(ClaimTypes.Role, p.TipoUsuario.Rol),
+                        };
 
-                        var token = new JwtSecurityToken(
-                            issuer: config["TokenAuthentication:Issuer"],
-                            audience: config["TokenAuthentication:Audience"],
-                            claims: claims,
-                            expires: DateTime.Now.AddMinutes(60),
-                            signingCredentials: credenciales
-                        );
+                        var claimsIdentity = new ClaimsIdentity(
+                            claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                        ViewBag.Success = "Bienvenido " + p.Nombre + " " + p.Apellido + "!!";
+                        var authProperties = new AuthenticationProperties
+                        {
+                            //AllowRefresh = <bool>,
+                            // Refreshing the authentication session should be allowed.
+                            AllowRefresh = true,
+                            //ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
+                            // The time at which the authentication ticket expires. A 
+                            // value set here overrides the ExpireTimeSpan option of 
+                            // CookieAuthenticationOptions set with AddCookie.
 
-                        return RedirectToAction(nameof(Index), "Home", new JwtSecurityTokenHandler().WriteToken(token));
+                            //IsPersistent = true,
+                            // Whether the authentication session is persisted across 
+                            // multiple requests. When used with cookies, controls
+                            // whether the cookie's lifetime is absolute (matching the
+                            // lifetime of the authentication ticket) or session-based.
+
+                            //IssuedUtc = <DateTimeOffset>,
+                            // The time at which the authentication ticket was issued.
+
+                            //RedirectUri = <string>
+                            // The full path or absolute URI to be used as an http 
+                            // redirect response value.
+                        };
+
+                        await HttpContext.SignInAsync(
+                            CookieAuthenticationDefaults.AuthenticationScheme,
+                            new ClaimsPrincipal(claimsIdentity),
+                            authProperties);
+
+                        ViewBag.Success = "Bienvenido " + p.Nombre + "!!";
+
+                        return PartialView("_LoginModal", loginView);
                     }
                 }
                 else
@@ -275,6 +297,28 @@ namespace CLubLaRibera_Web.Controllers
                 ViewBag.Error = ex.Message;
                 ViewBag.StackTrate = ex.StackTrace;
                 return PartialView("_RegistroModal", usuario);
+            }
+        }
+
+        [AllowAnonymous]
+        public ActionResult RecuperarPass()
+        {
+            return PartialView("_RecuperarClaveModal", new RecuperarClaveView()); ;
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult RecuperarPass(RecuperarClaveView recuperar)
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                TempData["StackTrace"] = ex.StackTrace;
+                return RedirectToAction("Login");
             }
         }
     }

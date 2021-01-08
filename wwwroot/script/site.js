@@ -4,6 +4,7 @@
 // Write your JavaScript code.
 $(function () {
     var placeholderElement = $('#modal-placeholder');
+    var placeholderElementRecuperar = $('#modal-placeholder-recuperar');
 
     $('a[data-toggle="ajax-modal"]').click(function (event) {
         var url = $(this).data('url');
@@ -58,6 +59,19 @@ $(function () {
                 alert("Status: " + textStatus); alert("Error: " + errorThrown);
             }  
         })
+    });
+
+    placeholderElement.on("click", '[data-save="recuperar-modal"]', function (event) {
+        event.preventDefault();
+
+        var url = $(this).data('url');
+        console.log(url);
+        placeholderElement.find('.modal').modal('hide');
+
+        $.get(url).done(function (data) {
+            placeholderElementRecuperar.html(data);
+            placeholderElementRecuperar.find('.modal').modal('show');
+        });
     });
 
     placeholderElement.on('change', '[id="Archivo"]', function (event) {

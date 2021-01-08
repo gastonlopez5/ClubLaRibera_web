@@ -1,20 +1,16 @@
 ﻿@model CLubLaRibera_Web.Models.RecuperarClaveView
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="RecuperarPass" class="loginmodalbox-search">
-            <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
-            <input name="IsError" type="hidden" value="@ViewBag.Error" />
-            <input name="IsSuccess" type="hidden" value="@ViewBag.Success" />
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <input type="submit" value="Enviar" class="ritekhela-bgcolor" data-save="modal">
-        </form>
+<form asp-action="RecuperarPass" class="loginmodalbox-search">
+    <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+    <input name="IsError" type="hidden" value="@ViewBag.Error" />
+    <input name="IsSuccess" type="hidden" value="@ViewBag.Success" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Email" class="ritekhela-color"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
     </div>
-</div>
+    <input type="submit" value="Enviar" class="ritekhela-bgcolor" data-save="modal">
+</form>
 
 

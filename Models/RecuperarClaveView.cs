@@ -8,8 +8,8 @@ namespace CLubLaRibera_Web.Models
 {
     public class RecuperarClaveView
     {
-        [Required(ErrorMessage ="Debe ingresar un mail válido")]
-        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "Email requerido")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Ingrese un email válido")]
         public string Email { get; set; }
     }
 }

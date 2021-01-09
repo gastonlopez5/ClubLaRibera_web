@@ -62,10 +62,8 @@ $(function () {
     });
 
     placeholderElement.on("click", '[data-save="recuperar-modal"]', function (event) {
-        event.preventDefault();
 
         var url = $(this).data('url');
-        console.log(url);
         placeholderElement.find('.modal').modal('hide');
 
         $.get(url).done(function (data) {
@@ -73,6 +71,52 @@ $(function () {
             placeholderElementRecuperar.find('.modal').modal('show');
         });
     });
+
+    placeholderElementRecuperar.on('click', '[data-save="modal_recuperar"]', function (event) {
+        event.preventDefault();
+
+        var formDataRecuperar = new FormData();
+
+        var formRecuperar = $(this).parents('.modal').find('#RecuperarPass');
+        var actionUrl = formRecuperar.attr('action');
+
+        var other_data_recuperar = $('#RecuperarPass').serializeArray();
+        console.log(other_data_recuperar);
+        $.each(other_data_recuperar, function (key, input) { //append other input value
+            formDataRecuperar.append(input.name, input.value);
+        });
+
+        $.ajax({
+            type: "POST",
+            url: actionUrl,
+            data: formDataRecuperar,
+            contentType: false, // Not to set any content header
+            processData: false, // Not to process data
+            success: function (res) {
+                var newBody = $('.modal-body', res);
+                placeholderElementRecuperar.find('.modal-body').replaceWith(newBody);
+
+                var error = newBody.find('[name="IsError"]').val();
+                var success = newBody.find('[name="IsSuccess"]').val();
+                var valid = newBody.find('[name="IsValid"]').val() == "True";
+
+                if (error != null) {
+                    if (error.length != 0) {
+                        alertify.set('notifier', 'position', 'top-center');
+                        alertify.error(newBody.find('[name="IsError"]').val());
+                    } else if (valid) {
+                        alertify.set('notifier', 'position', 'top-center');
+                        alertify.success(success);
+                        placeholderElementRecuperar.find('.modal').modal('hide');
+                    }
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Status: " + textStatus); alert("Error: " + errorThrown);
+            }
+        })
+    });
+
 
     placeholderElement.on('change', '[id="Archivo"]', function (event) {
         event.preventDefault();

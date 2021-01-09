@@ -301,18 +301,56 @@ namespace CLubLaRibera_Web.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult RecuperarPass()
+        public ActionResult RecuperarPassModal()
         {
-            return PartialView("_RecuperarClaveModal", new RecuperarClaveView()); ;
+            return PartialView("_RecuperarClaveModal", new RecuperarClaveView());
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult RecuperarPass(RecuperarClaveView recuperar)
+        public async Task<ActionResult> RecuperarPass(RecuperarClaveView recuperar)
         {
             try
             {
-                return View();
+                if (ModelState.IsValid)
+                {
+                    var usuario = _context.Usuarios.FirstOrDefault(x => x.Email == recuperar.Email);
+
+                    if (usuario != null)
+                    {
+                        ViewBag.Success = "Recibirá en su correo la contraseña para ingresar.";
+
+                        string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                        password: "4321",
+                        salt: System.Text.Encoding.ASCII.GetBytes("Salt"),
+                        prf: KeyDerivationPrf.HMACSHA1,
+                        iterationCount: 1000,
+                        numBytesRequested: 256 / 8));
+
+                        usuario.Clave = hashed;
+
+                        _context.Usuarios.Update(usuario);
+                        await _context.SaveChangesAsync();
+
+                        utilidades.EnciarCorreo(usuario.Email,
+                            "Club La Ribera - Blanqueo de clave",
+                            "<h2>Recuperación de clave para " + usuario.Apellido + " " + usuario.Nombre + "</h2>" +
+                            "<p>Recuerda modificar la contraseña cuando ingreses.</p>" +
+                            "<br />" +
+                            "<p>Tu contraseña es: 4321");
+                    }
+                    else
+                    {
+                        ViewBag.Error = "No existe un usuario con este email";
+                    }
+
+                    return PartialView("_RecuperarClaveModal", recuperar);
+                }
+                else
+                {
+                    return PartialView("_RecuperarClaveModal", new RecuperarClaveView());
+                }
+                
             }
             catch (Exception ex)
             {

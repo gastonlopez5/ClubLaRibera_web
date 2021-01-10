@@ -220,7 +220,7 @@ namespace CLubLaRibera_Web.Controllers
 
                     if (_context.Usuarios.Any(x => x.Email == usuario.Email))
                     {
-                        ViewBag.Error = "Ya existe un propietario con ese email o dni";
+                        ViewBag.Error = "Ya existe un propietario con ese email";
                         return PartialView("_RegistroModal", usuario);
                     }
                     else
@@ -239,6 +239,8 @@ namespace CLubLaRibera_Web.Controllers
                             ViewBag.Error = "El archivo seleccionado no es una imagen o excede el tamaño de 600 kb";
                             return PartialView("_RegistroModal", usuario);
                         }
+
+                        if(usuario.RolId == 4) { usuario.GrupoId = 10; }
 
                         _context.Usuarios.Add(usuario);
                         await _context.SaveChangesAsync();
